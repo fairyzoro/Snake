@@ -43,13 +43,12 @@ public class Snake extends Canvas implements Runnable {//Class of the game
 		apple = new Apple(width, height);//create the first apple, in a random location
 		
 		//set the possible colors of the snake to all the colors of the rainbow!
-		//this works but I don't like how it looks...
 		rainbow = new int[7];
 		rainbow[0] = 0xff0000;
 		rainbow[1] = 0xffa500;
 		rainbow[2] = 0xffff00;
 		rainbow[3] = 0x00ff00;
-	    rainbow[4] = 0x0000ff;
+	        rainbow[4] = 0x0000ff;
 		rainbow[5] = 0x4b0082;
 		rainbow[6] = 0xee82ee;
 
@@ -65,7 +64,7 @@ public class Snake extends Canvas implements Runnable {//Class of the game
 	public static int width = 32; //declare and initialize width
 	public static int height = width / 16 * 9; //set height, in a 16:9 ratio
 	public static int scale = 27; //set the pixels to scale by 27
-	private static double updatesPerSecond = 10.0; //update entire game every 10 seconds (the mysterious UPS)
+	private static double updatesPerSecond = 10.0; //update entire game every 10 seconds
 	private static ArrayList<Snakepart> parts;//declare arraylist of snakeparts
 	private static Apple apple;//declare the apple
 	private static String score = "0"; //set score to 0
@@ -75,9 +74,9 @@ public class Snake extends Canvas implements Runnable {//Class of the game
 	private static Thread thread; //thread the game will run in
 	JFrame frame; //frame object
 	private boolean running = false; //whether or not the game is running
-    private static final int color = 0xdead & 0xbeef; //original color of snakepart
+        private static final int color; //sorry no more 0xdead & 0xbeef :( //0xdead & 0xbeef; //original color of snakepart
 	private static boolean reset = false; //should the game reset
-	private static boolean lose = false; //has the player lost (has the snake touches itself, or the wall)
+	private static boolean lose = false; //has the player lost (has the snake touches itself, or the wall
 	private static boolean started = false; //has the game started
 	private static boolean playClipLose = false; //should the lose clip be played
 	
@@ -306,7 +305,7 @@ public class Snake extends Canvas implements Runnable {//Class of the game
 					loop:{
 						for(int i = 0; i < parts.size(); i++){
 							if(parts.get(i).getX()<0||parts.get(i).getX()>width-1||parts.get(i).getY()<0||parts.get(i).getY()>height-1) break loop; //don't render off screen
-							pixels[parts.get(i).getX() + parts.get(i).getY() * width] = (color << i) | 0x0000ff; //set snakepart's color
+							pixels[parts.get(i).getX() + parts.get(i).getY() * width] = rainbow[i%7]; //set snakepart's color
 						}
 					}
 					pixels[apple.getX() + apple.getY() * width] = 0xff0000; //set apple to red
